@@ -1,27 +1,26 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Randomize_Words
+namespace _02.Big_Factorial
 {
-
-
     class Program
     {
         static void Main(string[] args)
         {
-            string[] words = Console.ReadLine()
-                .Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            List<string> sentence = Console.ReadLine().Split().ToList();
 
-            Random random = new Random();
+            Random rnd = new Random();
 
-            for (int i = 0; i < words.Length; i++)
+            for (int i = 0; i < sentence.Count; i++)
             {
-                int randomIndex = random.Next(0, words.Length);
-                string wordToExchange = words[i];
-                words[i] = words[randomIndex];
-                words[randomIndex] = wordToExchange;
+                int rndIndex = rnd.Next(0, sentence.Count);
+                string exchangeWord = sentence[i];
+                sentence[i] = sentence[rndIndex];
+                sentence[rndIndex] = exchangeWord;
             }
-
-            Console.WriteLine(string.Join(Environment.NewLine, words));
+            Console.WriteLine(string.Join(Environment.NewLine, sentence));
         }
     }
+
 }
