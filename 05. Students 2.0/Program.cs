@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace _04.Students_2.0
+namespace _05.Students_2_0
     class Program
     {
         class Student
