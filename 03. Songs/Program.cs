@@ -1,41 +1,32 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace Randomize_Words
+namespace _03.Songs
 {
-
+    class Song
+    {
+        public string TypeList { get; set; }
+        public string Name { get; set; }
+    }
 
     class Program
     {
-        class Song
-        {
-
-            public string TypeList { get; set; }
-
-            public string Name { get; set; }
-
-            public string Time { get; set; }
-
-        }
         static void Main(string[] args)
         {
-            int numOfSongs = int.Parse(Console.ReadLine());
+            int nSongs = int.Parse(Console.ReadLine());
+
             List<Song> songs = new List<Song>();
 
-            for (int i = 1; i <= numOfSongs; i++)
+            for (int i = 0; i < nSongs; i++)
             {
-                string[] dataofSong = Console.ReadLine()
-                    .Split("_", StringSplitOptions.RemoveEmptyEntries);
+                string[] data = Console.ReadLine().Split("_");
 
-                Song song = new Song() 
-                {
-                    TypeList = dataofSong[0],
-                    Name = dataofSong[1],
-                    Time = dataofSong[2],
+                Song song = new Song() {
+                    TypeList = data[0],
+                    Name = data[1],
                 };
-           
                 songs.Add(song);
-
             }
 
             string typeList = Console.ReadLine();
@@ -51,7 +42,7 @@ namespace Randomize_Words
             {
                 foreach (Song song in songs)
                 {
-                    if (typeList == song.TypeList)
+                    if (song.TypeList == typeList)
                     {
                         Console.WriteLine(song.Name);
                     }
@@ -59,4 +50,5 @@ namespace Randomize_Words
             }
         }
     }
+
 }
