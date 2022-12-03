@@ -1,80 +1,56 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Store_Boxes
+namespace _06.Store_Boxes
 {
+    class Box
+    {
+        public string SerialNum { get; set; }
+        public string Item { get; set; }
+        public int ItemQuantity { get; set; }
+        public double BoxPrice { get; set; }
+        public double ItemPrice { get; set; }
+    }
+
     class Program
     {
-        class Item
-        {
-            public string Name { get; set; }
-
-            public decimal Price { get; set; }
-        }
-
-        class Box
-        {
-            public Box()
-            {
-                Item = new Item();
-            }
-
-            public string SerialNumber { get; set; }
-
-            public  Item Item { get; set; }
-
-            public int Quantity { get; set; }
-
-            public decimal PriceBox 
-            {
-                get
-                {
-                    return this.Quantity * this.Item.Price;
-                }
-            }
-        }
-
         static void Main(string[] args)
         {
             List<Box> boxes = new List<Box>();
-            string input;
+            string command;
 
-            while ((input = Console.ReadLine()) != "end")
+            while ((command = Console.ReadLine()) != "end")
             {
-                string[] array = input.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                string[] commandArgs = command.Split().ToArray();
 
-                string serialNumber = array[0];
-                string name = array[1];
-                int quantity = int.Parse(array[2]);
-                decimal price = decimal.Parse(array[3]);
+                string serialNum = commandArgs[0];
+                string item = commandArgs[1];
+                int itemQuantity = int.Parse(commandArgs[2]);
+                double itemPrice = double.Parse(commandArgs[3]);
 
                 Box box = new Box()
                 {
-                    SerialNumber = serialNumber,
-
-                    Item = new Item()
-                    {
-                        Name = name,
-                        Price = price
-                    },
-
-                    Quantity = quantity
+                    SerialNum = serialNum,
+                    Item = item,
+                    ItemQuantity = itemQuantity,
+                    ItemPrice = itemPrice,
+                    BoxPrice = itemQuantity * itemPrice
                 };
 
                 boxes.Add(box);
             }
 
-            List<Box> orderedBoxes = boxes
-                .OrderByDescending(b => b.PriceBox)
-                .ToList();
+            List<Box> orderedBoxes = boxes.OrderByDescending(x => x.BoxPrice).ToList();
 
             foreach (Box box in orderedBoxes)
             {
-                Console.WriteLine($"{box.SerialNumber}");
-                Console.WriteLine($"-- {box.Item.Name} - ${box.Item.Price:f2}: {box.Quantity}");
-                Console.WriteLine($"-- ${box.PriceBox:f2}");
+                Console.WriteLine(box.SerialNum);
+                Console.WriteLine($"-- {box.Item} - ${box.ItemPrice:f2}: { box.ItemQuantity}");
+                Console.WriteLine($"-- ${box.BoxPrice:f2}");
             }
         }
+
     }
+
 }
