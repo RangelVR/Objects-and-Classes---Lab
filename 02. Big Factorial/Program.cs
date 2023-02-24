@@ -1,21 +1,14 @@
-﻿using System;
 using System.Numerics;
 
-namespace Big_Factorial
+int n = int.Parse(Console.ReadLine());
+
+BigInteger factorial = 1;
+
+while (n > 0)
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            int factorial = int.Parse(Console.ReadLine());
-            BigInteger result = 1;
-
-            for (int i = 2; i <= factorial; i++)
-            {
-                result *= i;
-            }
-
-            Console.WriteLine(result);
-        }
-    }
+    factorial *= n;
+    n--;
 }
+
+Console.WriteLine(factorial);
+
