@@ -1,53 +1,54 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+string studentInfo = Console.ReadLine();
 
-namespace _04.Students
+List<Student> students = new List<Student>();
+
+while (studentInfo != "end")
 {
-    class Program
+    string[] infoArr = studentInfo.Split();
+
+    string firstName = infoArr[0];
+    string lastName = infoArr[1];
+    int age = int.Parse(infoArr[2]);
+    string homeTown = infoArr[3];
+
+    Student newStudent = new Student
     {
-        class Student
-        {
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-            public string Age { get; set; }
-            public string HomeTown { get; set; }
-        }
+        FirstName = firstName,
+        LastName = lastName,
+        Age = age,
+        HomeTown = homeTown
+    };
 
-        static void Main(string[] args)
-        {
-            List<Student> listOfStudents = new List<Student>();
-            string[] command = Console.ReadLine().Split().ToArray();
+    students.Add(newStudent);
+    studentInfo = Console.ReadLine();
+}
 
-            while (command[0] != "end")
-            {
-                Student newStudent = new Student()
-                { 
-                    FirstName = command[0],
-                    LastName = command[1],
-                    Age = command[2],
-                    HomeTown = command[3]
-                };
-                listOfStudents.Add(newStudent);
-                command = Console.ReadLine().Split().ToArray();
-            }
+string town = Console.ReadLine();
 
-            string city = Console.ReadLine();
-            
-            foreach (Student student in listOfStudents)
-            {
-                if (student.HomeTown == city)
-                {
-                    Console.WriteLine($"{student.FirstName} {student.LastName} is {student.Age } years old.");
-                }
-            }
+List<Student> filteredStudents = students.Where(x => x.HomeTown == town).ToList();
 
-            //List<Student> filteredList = listOfStudents.Where(x => x.HomeTown == city).ToList();
-            //foreach (Student student in filteredList)
-            //{
-            //    Console.WriteLine($"{student.FirstName} {student.LastName} is {student.Age } years old.");
-            //}
-        }
-    }
+foreach (Student student in filteredStudents)
+{
+    Console.WriteLine($"{student.FirstName} {student.LastName} is {student.Age} years old.");
+}
 
+
+//foreach (var student in students)
+//{
+//    if (student.HomeTown == town)
+//    {
+//        Console.WriteLine($"{student.FirstName} {student.LastName} is {student.Age} years old.");
+//    }
+//}
+
+
+class Student
+{
+    public string FirstName { get; set; }
+   
+    public string LastName { get; set; }
+
+    public int Age { get; set; }
+
+    public string HomeTown { get; set; }
 }
