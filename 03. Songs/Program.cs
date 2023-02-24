@@ -13,7 +13,7 @@ while (n > 0)
     Song newSong = new Song
     {
         TypeList = type,
-        Name = name,
+        Name = name
     };
 
     songs.Add(newSong);
@@ -36,7 +36,6 @@ else
         if (song.TypeList == typeList)
         {
             Console.WriteLine(song.Name);
-
         }
     }
 }
