@@ -11,17 +11,12 @@ while (studentInfo != "end")
     int age = int.Parse(infoArr[2]);
     string homeTown = infoArr[3];
 
-    if (students.Any(x => x.FirstName == firstName && x.LastName == lastName))
+    Student currStudent = students.FirstOrDefault(x => x.FirstName == firstName && x.LastName == lastName);
+
+    if (currStudent != null)
     {
-        foreach (Student student in students)
-        {
-            if (student.FirstName == firstName && student.LastName == lastName)
-            {
-                student.Age = age;
-                student.HomeTown = homeTown;
-                break;
-            }
-        }
+        currStudent.Age = age;
+        currStudent.HomeTown = homeTown;
     }
     else
     {
