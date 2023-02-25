@@ -10,13 +10,13 @@ while (studentInfo != "end")
     string lastName = infoArr[1];
     int age = int.Parse(infoArr[2]);
     string homeTown = infoArr[3];
+   
+    Student existingStudent = students.FirstOrDefault(x => x.FirstName == firstName && x.LastName == lastName);
 
-    Student currStudent = students.FirstOrDefault(x => x.FirstName == firstName && x.LastName == lastName);
-
-    if (currStudent != null)
+    if (existingStudent != null)
     {
-        currStudent.Age = age;
-        currStudent.HomeTown = homeTown;
+        existingStudent.Age = age;
+        existingStudent.HomeTown = homeTown;
     }
     else
     {
