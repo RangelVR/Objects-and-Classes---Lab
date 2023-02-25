@@ -10,7 +10,7 @@ while (studentInfo != "end")
     string lastName = infoArr[1];
     int age = int.Parse(infoArr[2]);
     string homeTown = infoArr[3];
-   
+
     Student existingStudent = students.FirstOrDefault(x => x.FirstName == firstName && x.LastName == lastName);
 
     if (existingStudent != null)
@@ -35,14 +35,15 @@ while (studentInfo != "end")
 
 string town = Console.ReadLine();
 
-List<Student> filteredStudents = students.Where(x => x.HomeTown == town).ToList();
+Console.WriteLine(string.Join(Environment.NewLine, students.Where(x => x.HomeTown == town)
+    .Select(x => $"{x.FirstName} {x.LastName} is {x.Age} years old.")));
 
-foreach (Student student in filteredStudents)
-{
-    Console.WriteLine($"{student.FirstName} {student.LastName} is {student.Age} years old.");
-}
+//List<Student> filteredStudents = students.Where(x => x.HomeTown == town).ToList();
 
-
+//foreach (Student student in filteredStudents)
+//{
+//    Console.WriteLine($"{student.FirstName} {student.LastName} is {student.Age} years old.");
+//}
 
 class Student
 {
