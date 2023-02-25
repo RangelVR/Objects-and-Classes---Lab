@@ -13,7 +13,7 @@ while (studentInfo != "end")
 
     if (students.Any(x => x.FirstName == firstName && x.LastName == lastName))
     {
-        foreach (var student in students)
+        foreach (Student student in students)
         {
             if (student.FirstName == firstName && student.LastName == lastName)
             {
