@@ -35,7 +35,8 @@ while (studentInfo != "end")
 
 string town = Console.ReadLine();
 
-Console.WriteLine(string.Join(Environment.NewLine, students.Where(x => x.HomeTown == town)
+Console.WriteLine(string.Join(Environment.NewLine, students
+    .Where(x => x.HomeTown == town)
     .Select(x => $"{x.FirstName} {x.LastName} is {x.Age} years old.")));
 
 //List<Student> filteredStudents = students.Where(x => x.HomeTown == town).ToList();
